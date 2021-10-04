@@ -1,4 +1,5 @@
-import QuestionnaireItem from "./QuestionnaireItem"
+import QuestionnaireItem from "./QuestionnaireItem";
+import "./Questionnaire.css";
 
 const Questionnaires: React.FC = () => {
   return (

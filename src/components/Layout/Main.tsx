@@ -1,4 +1,4 @@
-import Questionnaires from "./Questionnaires"
+import Questionnaires from "../Questionnaire/Questionnaires"
 
 const Main: React.FC = () => {
   return (

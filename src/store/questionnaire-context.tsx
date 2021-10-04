@@ -1,39 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import * as jsonResult from "../assets/data/questionnaire.json";
+import { Direction } from "../enums";
+import { Question } from "../models";
 
 type QuestionnaireContextObj = {
-  items: any[];
-  addAnswer: (id: string) => void;
-  removeAnswer: (id: string) => void;
+  questions: Question[];
+  currentItemIdx: number;
+  direction: string;
+  addCurrentItemIdx: (idx: number) => void;
+  addDirection: (direction: Direction) => void;
+  addAnswer: (questionId: string, choiceIndex: number) => void;
 };
 
 export const QuestionnaireContext =
   React.createContext<QuestionnaireContextObj>({
-    items: [],
-    addAnswer: (id: string) => {},
-    removeAnswer: (id: string) => {},
+    questions: [],
+    currentItemIdx: 0,
+    direction: "",
+    addCurrentItemIdx: (idx: number) => {},
+    addDirection: (direction: Direction) => {},
+    addAnswer: (questionId: string, choiceIndex: number) => {},
   });
 
+let isInitial = true;
+
 const QuestionnaireContextProvider: React.FC = (props) => {
-  const [questionnaires, setQuestionnaires] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
+  const [direction, setDirection] = useState("");
 
-  const addAnswerHandler = (todoText: string) => {
-    const newTodo = {};
-
-    setQuestionnaires((prevTodos) => {
-      return prevTodos.concat(newTodo);
+  const addAnswerHandler = (questionId: string, choiceIndex: number) => {
+    setQuestions((prevQuestions) => {
+      return prevQuestions.map((q) => ({
+        ...q,
+        choices:
+          q.identifier === questionId
+            ? q.choices?.map((c, idx) => ({
+                ...c,
+                selected:
+                  idx === choiceIndex ? (c.selected ? false : true) : false,
+              }))
+            : q.choices,
+      }));
     });
   };
 
-  const removeAnswerHandler = (todoId: string) => {
-    setQuestionnaires((prevTodos) => {
-      return prevTodos.filter((todo) => todo.id !== todoId);
-    });
+  const addCurrentItemIdxHandler = (index: number) => {
+    setCurrentItemIndex(index);
   };
+
+  const addDirectionHandler = (direction: Direction) => {
+    setDirection(direction);
+  };
+
+  useEffect(() => {
+    if (isInitial) {
+      setQuestions(jsonResult.questionnaire.questions);
+      isInitial = false;
+    }
+  }, [questions, currentItemIndex]);
 
   const contextValue: QuestionnaireContextObj = {
-    items: questionnaires,
+    questions,
+    direction,
+    currentItemIdx: currentItemIndex,
+    addCurrentItemIdx: addCurrentItemIdxHandler,
+    addDirection: addDirectionHandler,
     addAnswer: addAnswerHandler,
-    removeAnswer: removeAnswerHandler,
   };
 
   return (

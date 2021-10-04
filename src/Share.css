@@ -14,6 +14,12 @@ body {
 main {
   min-height: calc(100vh - 3.5rem - 8rem);
   margin-top: 3.5rem;
+  display: flex;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
 }
 
 .button {
@@ -49,49 +55,4 @@ main {
   flex-direction: row-reverse;
   font-family: inherit;
   padding: 16px;
-}
-
-.button__nav {
-  display: flex;
-  flex-direction: row-reverse;
-  border-radius: 4px;
-  background-color: #fba137;
-}
-
-.button__nav-item {
-  position: relative;
-  font-family: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition-duration: 0.1s;
-  transition-property: background-color, color, border-color, opacity,
-    box-shadow;
-  transition-timing-function: ease-out;
-  outline: none;
-  border: 1px solid transparent;
-  margin: 0px;
-  padding: 0px;
-  width: 36px;
-  min-width: 36px;
-  height: 32px;
-  justify-content: center;
-  background-color: #fba137;
-  color: #131313;
-}
-
-.button__nav-item:active {
-  background-color: #e29132;
-}
-
-.button__nav-item:hover {
-  background-color: #fcaf55;
-}
-
-.button__nav--prev {
-  border-radius: 0px 4px 4px 0px;
-}
-
-.button__nav--next {
-  border-radius: 4px 0px 0px 4px;
-  border-right: 1px solid #666;
 }

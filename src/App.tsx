@@ -1,9 +1,8 @@
-import React, { Fragment } from "react";
 import "./Share.css";
 import "./App.css";
 import QuestionnaireContextProvider from "./store/questionnaire-context";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
+import Main from "./components/Layout/Main";
+import Footer from "./components/Layout/Footer";
 
 function App() {
   return (
