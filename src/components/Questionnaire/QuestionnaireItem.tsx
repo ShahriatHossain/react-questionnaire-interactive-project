@@ -1,7 +1,8 @@
 import { Fragment, useContext } from "react";
-import { Direction } from "../../enums";
+import { Direction, QuestionType } from "../../enums";
 import { Question } from "../../models";
 import { QuestionnaireContext } from "../../store/questionnaire-context";
+import InputTextContainer from "../InputText/InputTextContainer";
 import MultipleChoiceContainer from "./MultipleChoiceContainer";
 import QuestionContainer from "./QuestionContainer";
 
@@ -34,9 +35,15 @@ const QuestionnaireItem: React.FC = () => {
             questionId={idx}
             question={question}
           ></QuestionContainer>
-          <MultipleChoiceContainer
-            question={question}
-          ></MultipleChoiceContainer>
+          {question.question_type === QuestionType.MultipleChoice && (
+            <MultipleChoiceContainer
+              question={question}
+            ></MultipleChoiceContainer>
+          )}
+
+          {question.question_type === QuestionType.Text && (
+            <InputTextContainer question={question}></InputTextContainer>
+          )}
         </article>
       ))}
     </Fragment>

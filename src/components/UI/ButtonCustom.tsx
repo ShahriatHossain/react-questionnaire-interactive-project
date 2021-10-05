@@ -4,6 +4,7 @@ import "./ButtonCustom.css";
 const ButtonCustom: React.FC<{ clickHandler: () => void; btnText: string }> = (
   props
 ) => {
+
   return (
     <Button click={props.clickHandler} classList="button">
       <span className="button-content">

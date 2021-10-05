@@ -1,15 +1,15 @@
 .button-content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
-  
-  .button-content__ok {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 28px;
-  }
-  
-  .button-content__tick {
-    margin-left: 8px;
-  }
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.button-content__ok {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.button-content__tick {
+  margin-left: 8px;
+}

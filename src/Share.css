@@ -13,8 +13,10 @@ body {
 
 main {
   min-height: calc(100vh - 3.5rem - 8rem);
-  margin-top: 3.5rem;
+  margin: 3.5rem;
   display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
 }
 
 button[disabled],
@@ -48,11 +50,24 @@ html input[disabled] {
   outline: none;
 }
 
+.button:disabled {
+  opacity: 0.33;
+  pointer-events: none;
+  background-color: #fba1374d;
+}
+
 .main-footer {
-  width: 100%;
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row-reverse;
+  justify-content: center;
+  flex-direction: row;
   font-family: inherit;
   padding: 16px;
+}
+
+@media (min-width: 40rem) {
+  main {
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
